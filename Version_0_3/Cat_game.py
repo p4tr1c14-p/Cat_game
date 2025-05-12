@@ -5,8 +5,11 @@ Fecha: 12 de mayo del 2025.
 Descripción:
 """
 import pygame
+
+
 from Configurations import Configurations
-from Game_functionalities import game_events, screen_refresh
+from Game_functionalities import game_event, screen_refresh
+from Media import Background
 
 def run_game() -> None:
     """
@@ -14,6 +17,8 @@ def run_game() -> None:
     """
     #Se inicializa el módulo pygame
     pygame.init()
+
+    clock = pygame.time.Clock()
 
     #Se inicializa la pantalla
     #screen_size = (1280, 720) #Resolución de la pantalla (ancho, alto)
@@ -25,12 +30,11 @@ def run_game() -> None:
 
     #Ciclo principal de videojuego
     game_over = False
+    background = Background()
 
     while not game_over:
-        game_events()
-
-        screen_refresh(screen)
-    pygame.quit()
+        game_over = game_event()
+        screen_refresh(screen, clock, background)
 
 if __name__ == '__main__':
     run_game()

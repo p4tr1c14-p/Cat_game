@@ -1,5 +1,5 @@
 """
-Nombre: Galilea Peralta Contreras.
+Nombre:
 Fecha: 12 de mayo del 2025.
 
 Descripción:

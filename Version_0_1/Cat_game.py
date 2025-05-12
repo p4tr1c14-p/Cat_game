@@ -26,6 +26,7 @@ def run_game() -> None:
     # Ciclo principal del videojuego.
     game_over = False
 
+
     while not game_over:
         # Se verifican los eventos (teclado y ratón) del juego.
         for event in pygame.event.get():

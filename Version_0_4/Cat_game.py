@@ -1,8 +1,8 @@
 """
 Nombre:
-Fecha: 12 de mayo del 2025.
+Fecha: 13 de mayo del 2025.
 
-Descripción:
+Descripción: version 4
 """
 import pygame
 

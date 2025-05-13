@@ -1,3 +1,10 @@
+"""
+Nombre:
+Fecha: 13 de mayo del 2025.
+
+Descripción: version 4
+"""
+
 import pygame
 from pygame.sprite import Sprite
 from Configurations import Configurations

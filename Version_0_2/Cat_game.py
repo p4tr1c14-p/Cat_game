@@ -27,7 +27,7 @@ def run_game() -> None:
     game_over = False
 
     while not game_over:
-        game_events()
+        game_over = game_events()
 
         screen_refresh(screen)
     pygame.quit()

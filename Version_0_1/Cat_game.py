@@ -30,6 +30,7 @@ def run_game() -> None:
     while not game_over:
         # Se verifican los eventos (teclado y ratón) del juego.
         for event in pygame.event.get():
+            print(event)
             if event.type == pygame.QUIT:
                 game_over = True
         # Se dibujan los elementos gráficos en la pantalla.

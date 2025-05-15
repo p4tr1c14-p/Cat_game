@@ -35,28 +35,12 @@ class Mark_X:
         x_imagex_path = Configurations.get_x_images_path()
         self.imagex = pygame.image.load(x_imagex_path)
 
-        self.imagex = pygame.image.load(Configurations.get_x_images_path())
+        screen_size = (50, 50)
+        self.imagex = pygame.transform.scale(self.imagex, screen_size)
+
         self.rect = self.imagex.get_rect()
 
     def blit(self, screen: pygame.surface.Surface) -> None:
-        """
-        Se utiliza para dibujar la manzana
-        :param screen: Pantalla en donde se dibuja
-        """
+
         screen.blit(self.imagex, self.rect)
 
-class Mark_O:
-    def __init__(self):
-
-        o_image_path = Configurations.get_o_images_path()
-        self.image = pygame.image.load(o_image_path)
-
-        self.image = pygame.image.load(Configurations.get_o_images_path())
-        self.rect = self.image.get_rect()
-
-    def blit(self, screen: pygame.surface.Surface) -> None:
-        """
-        Se utiliza para dibujar la manzana
-        :param screen: Pantalla en donde se dibuja
-        """
-        screen.blit(self.image, self.rect)

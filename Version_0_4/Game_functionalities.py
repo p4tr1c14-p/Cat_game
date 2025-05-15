@@ -23,6 +23,7 @@ def game_event() -> bool:
         #Un clic en cerrar el juego
         if event.type == pygame.QUIT:
             game_over = True
+
     return game_over
 
 def screen_refresh(screen: pygame.surface.Surface,

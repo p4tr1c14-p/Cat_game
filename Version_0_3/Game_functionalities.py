@@ -20,6 +20,7 @@ def game_event() -> bool:
 
     #Se verifican los eventos de
     for event in pygame.event.get():
+        print(event)
         #Un clic en cerrar el juego
         if event.type == pygame.QUIT:
             game_over = True

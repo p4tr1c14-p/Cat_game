@@ -20,7 +20,7 @@ def run_game() -> None:
     screen = pygame.display.set_mode(Configurations.get_screen_size() )
 
     #Se configura el título del juego
-    #game_title = "Snake game en pygame"
+    #game_title = ""
     pygame.display.set_caption(Configurations.get_game_title())
 
     #Ciclo principal de videojuego

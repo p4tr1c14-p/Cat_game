@@ -1,8 +1,8 @@
 """
 Nombre:
-Fecha: 13 de mayo del 2025.
+Fecha: 12 de mayo del 2025.
 
-Descripción: version 4
+Descripción:
 """
 import pygame
 
@@ -32,9 +32,11 @@ def run_game() -> None:
     game_over = False
     background = Background()
 
+    marks = pygame.sprite.Group()
+
     while not game_over:
-        game_over = game_event()
-        screen_refresh(screen, clock, background)
+        game_over = game_event(marks)
+        screen_refresh(screen, clock, background, marks)
 
 if __name__ == '__main__':
     run_game()

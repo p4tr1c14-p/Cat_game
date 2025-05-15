@@ -1,45 +1,21 @@
-"""
-Nombre:
-Fecha: 13 de mayo del 2025.
-
-Descripción: version 4
-"""
-
 import pygame
+from  Configurations import Configurations
 from pygame.sprite import Sprite
-from Configurations import Configurations
-from Media import Mark_X
-from random import randint
 
 class TicTacToeMark(Sprite):
-    def __init__(self, is_turno: bool = True):
-        """
-        Constructor de la clase
-        """
+    configurations = Configurations()
+    turno = "X"
+
+    def __init__(self, casilla):
         super().__init__()
-
-        if is_turno:
-            self.image = pygame.image.load(Configurations.get_o_images_path())
-
-            is_turno = False
+        if TicTacToeMark.turno == "X":
+            self.image = pygame.image.load(Configurations.get_mark_X())
+            TicTacToeMark.turno = "O"
         else:
-            self.image = pygame.image.load(Configurations.get_x_images_path())
-            is_turno = True
+            self.image = pygame.image.load(Configurations.get_mark_O())
+            TicTacToeMark.turno = "X"
 
-        cat_block_size = 50
-        self.image = pygame.transform.scale(self.image, (cat_block_size, cat_block_size))
+        self.image = pygame.transform.scale(self.image, Configurations.get_size_block())
 
         self.rect = self.image.get_rect()
-
-
-    def blit(self, screen: pygame.surface.Surface) -> None:
-        """
-        Se utiliza para dibujar el bloque de la serpiente
-        param screen: Pantalla en dnde se dibuja
-        """
-        screen.blit(self.image, self.rect)
-
-    def snake_head_init(self) -> None:
-        for event in pygame.event.get():
-            if event.key == pygame.K_a:
-                pass
+        self.rect.center = TicTacToeMark.configurations.get_posiciones().get(casilla, (0, 0))

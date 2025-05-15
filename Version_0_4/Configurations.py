@@ -1,10 +1,10 @@
 """
 Nombre:
-Fecha: 13 de mayo del 2025.
+Fecha: 12 de mayo del 2025.
 
-Descripción: version 4
+Descripción:
 """
-
+import pygame
 
 class Configurations:
     """
@@ -16,8 +16,34 @@ class Configurations:
     _background_image_path =  "../media/background_image.png"
     _fps = 8  # fps del juego
 
-    _x_images_path = "../media/markX.png"
-    _o_images_path = "../media/markO.png"
+    _mark_O = "../media/markX.png"
+    _mark_X = "../media/markO.png"
+
+    _size_block = (80,80)
+
+    _posiciones = {
+        1: (503, 324),
+        2: (639, 324),
+        3: (763, 324),
+        4: (503, 451),
+        5: (639, 451),
+        6: (764, 446),
+        7: (496, 577),
+        8: (629, 566),
+        9: (770, 566),
+    }
+
+    _teclas = {
+        pygame.K_q: 1,
+        pygame.K_w: 2,
+        pygame.K_e: 3,
+        pygame.K_a: 4,
+        pygame.K_s: 5,
+        pygame.K_d: 6,
+        pygame.K_z: 7,
+        pygame.K_x: 8,
+        pygame.K_c: 9,
+    }
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
@@ -43,13 +69,25 @@ class Configurations:
         return cls._fps
 
     @classmethod
-    def get_background_image_path(cls) -> str:
+    def get_mark_O(cls) -> str:
+        return cls._mark_O
+
+    @classmethod
+    def get_mark_X(cls) -> str:
+        return cls._mark_X
+
+    @classmethod
+    def get_background_image_path(cls)-> str:
         return cls._background_image_path
 
     @classmethod
-    def get_x_images_path(cls) -> str:
-        return cls._x_images_path
+    def get_posiciones(cls)-> dict[int, tuple[int, int]]:
+        return cls._posiciones
 
     @classmethod
-    def get_o_images_path(cls) -> str:
-        return cls._o_images_path
+    def get_size_block(cls) -> tuple[int,int]:
+        return cls._size_block
+
+    @classmethod
+    def get_teclas(cls) -> dict[int, int]:
+        return cls._teclas

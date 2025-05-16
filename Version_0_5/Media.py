@@ -53,5 +53,5 @@ class Turn_Image(Sprite):
 
         self.image = pygame.transform.scale(self.image, (500, 200)) #Escalamos la imagen del turno para que tenga el tamaño adecuado
         self.rect = self.image.get_rect()
-        self.rect.centerx = 650 #Centramos la imagen horizontalmente
-        self.rect.bottom = 250 #Ajustamos las medidas de la parte inferior de la imagen
+        self.rect.centerx = Configurations.get_center_x() #Centramos la imagen horizontalmente
+        self.rect.bottom = Configurations.get_bottom_x() #Ajustamos las medidas de la parte inferior de la imagen

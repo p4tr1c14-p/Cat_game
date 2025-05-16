@@ -57,6 +57,9 @@ class Configurations:
 
     _cell_number = [] #Lista vacía para llevar el control de las casillas ocupadas
 
+    _center_x = 650 #Centramos la imagen horizontalmente
+    _bottom_x = 250 #Ajustamos las medidas de la parte inferior de la imagen
+
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
         return cls._screen_size
@@ -104,3 +107,11 @@ class Configurations:
     @classmethod
     def get_image_turno_o(cls) -> str:
         return cls._image_turno_o
+
+    @classmethod
+    def get_center_x(cls)->int:
+        return cls._center_x
+
+    @classmethod
+    def get_bottom_x(cls)->int:
+        return cls._bottom_x

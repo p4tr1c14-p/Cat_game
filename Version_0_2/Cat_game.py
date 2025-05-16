@@ -12,24 +12,20 @@ def run_game() -> None:
     """
     Función principal del videojuego
     """
-    #Se inicializa el módulo pygame
     pygame.init()
 
-    #Se inicializa la pantalla
-    #screen_size = (1280, 720) #Resolución de la pantalla (ancho, alto)
-    screen = pygame.display.set_mode(Configurations.get_screen_size() )
+    #Creamos la ventana con el tamaño definido en configuraciones
+    screen = pygame.display.set_mode(Configurations.get_screen_size())
 
-    #Se configura el título del juego
-    #game_title = ""
     pygame.display.set_caption(Configurations.get_game_title())
 
-    #Ciclo principal de videojuego
     game_over = False
 
     while not game_over:
-        game_over = game_events()
+        game_over = game_events()  #Procesamos eventos y verificamos si hay que cerrar el juego
 
-        screen_refresh(screen)
+        screen_refresh(screen)  #Actualizamos la pantalla en cada iteración
+
     pygame.quit()
 
 if __name__ == '__main__':

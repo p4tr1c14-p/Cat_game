@@ -2,43 +2,41 @@
 Nombre:
 Fecha: 12 de mayo del 2025.
 
-Descripción:
+Descripción: En esta primera versión solo se creó la pantalla de fondo
 """
 
 import pygame
-
 
 def run_game() -> None:
     """
     Función principal.
     """
-    #Se inicializa el módulo de pygame.
     pygame.init()
 
-    # Se inicializa la pantalla.
-    screen_size =(1288,720) # Resolución de la pantalla (ancho,alto).
+    #Definimos el tamaño de la pantalla donde se mostrará el juego
+    screen_size = (1288, 720)  #Resolución de la pantalla (ancho, alto)
     screen = pygame.display.set_mode(screen_size)
 
-    #Se configura el título del juego.
+    #Establecemos el título que aparecerá en la ventana del juego
     game_title = "Cat game en pygame"
     pygame.display.set_caption(game_title)
 
-    # Ciclo principal del videojuego.
     game_over = False
 
-
+    #Iniciamos el ciclo principal del juego
     while not game_over:
-        # Se verifican los eventos (teclado y ratón) del juego.
+        #Revisamos todos los eventos que ocurren
         for event in pygame.event.get():
-            print(event)
             if event.type == pygame.QUIT:
-                game_over = True
-        # Se dibujan los elementos gráficos en la pantalla.
-        background = (135,206,235) # Fondo de la pantalla en formato RGB.
+                game_over = True  #Cambiamos la bandera si se cierra la ventana
+
+        #Dibujamos el fondo de la pantalla con un color azul cielo
+        background = (135, 206, 235)
         screen.fill(background)
 
-        #Se actualiza la pantalla.
+        #Actualizamos la pantalla con los nuevos elementos gráficos
         pygame.display.flip()
+
     pygame.quit()
 
 """ %%%%%%%     CÓDIGO A NIVEL DE MÓDULO    %%%%%%%%%%%%%%%%%%%%% """

@@ -1,7 +1,19 @@
+"""
+Nombre:
+Fecha: 15 de mayo del 2025.
+
+Descripción:
+En esta versión se incluye la verificación para evitar colocar marcas en casillas ya ocupadas.
+Se agregaron imágenes que indican de forma visual a quién le toca el turno (X o O),
+y se alternan dinámicamente con cada jugada.
+Se implementó la clase TurnImage para manejar este cambio visual y se integraron todas
+las configuraciones necesarias en la clase Configurations.
+Aún no se incorpora la lógica para detectar al ganador
+"""
+
 import pygame
 from Configurations import Configurations
 from pygame.sprite import Sprite
-
 
 class Background:
     """
@@ -9,12 +21,12 @@ class Background:
     """
 
     def __init__(self):
-        background_image_path = Configurations.get_background_image_path()
+        background_image_path = Configurations.get_background_image_path() #Esto es para tener la ruta de la imagen de fondo desde las configuraciones
         self.image = pygame.image.load(background_image_path)
 
-        # Se escala la imagen al tamaño de la pantalla
-        screen_size = Configurations.get_screen_size()
-        self.image = pygame.transform.scale(self.image, screen_size)
+        #Se escala la imagen al tamaño de la pantalla
+        screen_size = Configurations.get_screen_size() #Obtenemos el tamaño de la pantalla definido en las configuraciones
+        self.image = pygame.transform.scale(self.image, screen_size) #Escalamos la imagen para que se ajuste al tamaño de la pantalla
 
         self.rect = self.image.get_rect()
 
@@ -22,32 +34,24 @@ class Background:
         """
         Se utiliza para dibujar el fondo de pantalla
         """
-        screen.blit(self.image, self.rect)
+        screen.blit(self.image, self.rect) #Dibujamos la imagen de fondo sobre la superficie de la pantalla
 
 class Turn_Image(Sprite):
 
-    configurations = Configurations()
-    turno = "X"
+    turno = "X" #Inicializamos el turno con la letra "X"
 
     def __init__(self):
-        turno = "X"
+        turno = "X" #Reiniciamos el valor de turno a "X" (este valor no afecta al atributo de clase =D)
         super().__init__()
+
         if Turn_Image.turno == "X":
-            self.image = pygame.image.load(Configurations.get_image_turno_x())
-            Turn_Image.turno = "O"
+            self.image = pygame.image.load(Configurations.get_image_turno_x()) #Cargamos la imagen que indica que es el turno de "X"
+            Turn_Image.turno = "O" #Cambiamos el turno a "O" para la siguiente vez
         else:
-            self.image = pygame.image.load(Configurations.get_image_turno_o())
-            Turn_Image.turno = "X"
+            self.image = pygame.image.load(Configurations.get_image_turno_o()) #Cargamos la imagen que indica que es el turno de "O"
+            Turn_Image.turno = "X" #Cambiamos el turno a "X" para la siguiente vez
 
-        self.image = pygame.transform.scale(self.image, (500, 200)
-                                            )
+        self.image = pygame.transform.scale(self.image, (500, 200)) #Escalamos la imagen del turno para que tenga el tamaño adecuado
         self.rect = self.image.get_rect()
-        self.rect.centerx = 650
-        self.rect.bottom = 250
-
-
-
-
-
-
-
+        self.rect.centerx = 650 #Centramos la imagen horizontalmente
+        self.rect.bottom = 250 #Ajustamos las medidas de la parte inferior de la imagen

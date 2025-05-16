@@ -1,3 +1,10 @@
+"""
+Nombre:
+Fecha: 13 de mayo del 2025.
+
+Descripción:
+"""
+
 import pygame
 from Configurations import Configurations
 
@@ -8,10 +15,10 @@ class Background:
     """
 
     def __init__(self):
-        background_image_path = Configurations.get_background_image_path()
+        background_image_path = Configurations.get_background_image_path()  #Obtenemos la ruta de la imagen de fondo
         self.image = pygame.image.load(background_image_path)
 
-        # Se escala la imagen al tamaño de la pantalla
+        #Escalamos la imagen para que coincida con el tamaño de la pantalla
         screen_size = Configurations.get_screen_size()
         self.image = pygame.transform.scale(self.image, screen_size)
 
@@ -21,4 +28,4 @@ class Background:
         """
         Se utiliza para dibujar el fondo de pantalla
         """
-        screen.blit(self.image, self.rect)
+        screen.blit(self.image, self.rect)  #Dibujamos la imagen del fondo en la superficie de la pantalla

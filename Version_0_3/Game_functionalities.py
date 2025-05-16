@@ -1,6 +1,6 @@
 """
 Nombre:
-Fecha: 12 de mayo del 2025.
+Fecha: 13 de mayo del 2025.
 
 Descripción:
 """
@@ -9,32 +9,32 @@ import pygame
 from Configurations import Configurations
 from Media import Background
 
+
 def game_event() -> bool:
     """
-    Función que administra ñps eneventos del juego
-    retrun: La bandera del fin del juego
+    Función que administra los eventos del juego
+    return: La bandera del fin del juego
     """
 
-    #Se declara la bandera del fin del juego
     game_over = False
 
-    #Se verifican los eventos de
+    #Revisamos todos los eventos generados por el usuario
     for event in pygame.event.get():
-        print(event)
-        #Un clic en cerrar el juego
+        #Si el usuario cierra la ventana, terminamos el juego
         if event.type == pygame.QUIT:
             game_over = True
+
     return game_over
+
 
 def screen_refresh(screen: pygame.surface.Surface,
                    clock: pygame.time.Clock, background: Background) -> None:
     """
-    Función que administrar los elementos visuales del juego
+    Función que administra los elementos visuales del juego
     """
-    #Fondo de la pantaña
+    #Dibujamos la imagen de fondo en la pantalla
     background.blit(screen)
 
-    pygame.display.flip()
+    pygame.display.flip()  #Actualizamos el contenido de la ventana
 
-    # Se controla la velocidad de FPS
     clock.tick(Configurations.get_fps())

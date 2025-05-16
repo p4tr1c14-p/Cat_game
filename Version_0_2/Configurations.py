@@ -7,12 +7,12 @@ Descripción:
 
 class Configurations:
     """
-    Clase que continue todas las configuraciones del juego
+    Clase que contiene todas las configuraciones del juego
     """
-    #Configuraciones de la pantalla
+    #Definimos el tamaño de la pantalla, título y color de fondo RGB
     _screen_size = (1280, 720)
     _game_title = "Cat game en pygame"
-    _background = (135,206,235)
+    _background = (135, 206, 235)  #Color de fondo azul cielo
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
@@ -30,4 +30,4 @@ class Configurations:
 
     @classmethod
     def get_background(cls) -> tuple[int, int, int]:
-        return cls._background
+        return cls._background  #Regresamos el color de fondo como tupla RGB

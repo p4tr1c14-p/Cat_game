@@ -1,11 +1,17 @@
 """
 Nombre:
-Fecha: 12 de mayo del 2025.
+Fecha: 15 de mayo del 2025.
 
 Descripción:
+En esta versión se incluye la verificación para evitar colocar marcas en casillas ya ocupadas.
+Se agregaron imágenes que indican de forma visual a quién le toca el turno (X o O),
+y se alternan dinámicamente con cada jugada.
+Se implementó la clase TurnImage para manejar este cambio visual y se integraron todas
+las configuraciones necesarias en la clase Configurations.
+Aún no se incorpora la lógica para detectar al ganador
 """
-import pygame
 
+import pygame
 
 from Configurations import Configurations
 from Game_functionalities import game_event, screen_refresh
@@ -15,38 +21,30 @@ def run_game() -> None:
     """
     Función principal del videojuego
     """
-    #Se inicializa el módulo pygame
     pygame.init()
 
-    clock = pygame.time.Clock()
+    clock = pygame.time.Clock() #Creamos el reloj para controlar los fps
 
-    #Se inicializa la pantalla
-    #screen_size = (1280, 720) #Resolución de la pantalla (ancho, alto)
-    screen = pygame.display.set_mode(Configurations.get_screen_size() )
+    screen = pygame.display.set_mode(Configurations.get_screen_size()) #Creamos la ventana del juego con el tamaño definido
 
-    #Se configura el título del juego
-    #game_title = "Cat game en pygame"
-    pygame.display.set_caption(Configurations.get_game_title())
+    pygame.display.set_caption(Configurations.get_game_title()) #Colocamos el título de la ventana
 
-    #Ciclo principal de videojuego
     game_over = False
     background = Background()
 
-    marks = pygame.sprite.Group()
-    list_turn = Configurations.get_cell_number()
+    marks = pygame.sprite.Group() #Creamos un grupo de sprites para las marcas
+    list_turn = Configurations.get_cell_number() #Obtenemos la lista de casillas ya utilizadas
 
-    turno = pygame.sprite.Group()
+    turno = pygame.sprite.Group() #Creamos un grupo de sprites para la imagen del turno
 
-    nueva_image = Turn_Image()
+    nueva_image = Turn_Image() #Creamos la imagen inicial del turno
+    turno.add(nueva_image) #La agregamos al grupo de turno
 
-    turno.add(nueva_image)
-
-    lista_imagen = [nueva_image]
-
+    lista_imagen = [nueva_image] #Guardamos la imagen en la lista para poder hacer control de turnos
 
     while not game_over:
-        game_over = game_event(marks,list_turn,turno,lista_imagen)
-        screen_refresh(screen, clock, background, marks,turno)
+        game_over = game_event(marks, list_turn, turno, lista_imagen)
+        screen_refresh(screen, clock, background, marks, turno)
 
 if __name__ == '__main__':
     run_game()

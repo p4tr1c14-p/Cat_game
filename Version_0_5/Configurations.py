@@ -1,28 +1,35 @@
 """
 Nombre:
-Fecha: 12 de mayo del 2025.
+Fecha: 15 de mayo del 2025.
 
 Descripción:
+En esta versión se incluye la verificación para evitar colocar marcas en casillas ya ocupadas.
+Se agregaron imágenes que indican de forma visual a quién le toca el turno (X o O),
+y se alternan dinámicamente con cada jugada.
+Se implementó la clase TurnImage para manejar este cambio visual y se integraron todas
+las configuraciones necesarias en la clase Configurations.
+Aún no se incorpora la lógica para detectar al ganador
 """
+
 import pygame
 
 class Configurations:
     """
-    Clase que continue todas las configuraciones del juego
+    Clase que contiene todas las configuraciones del juego
     """
     #Configuraciones de la pantalla
-    _screen_size = (1280, 720)
-    _game_title = "Cat game en pygame"
-    _background_image_path =  "../media/background_image.png"
-    _fps = 8  # fps del juego
+    _screen_size = (1280, 720) #Definimos el tamaño de la ventana del juego
+    _game_title = "Cat game en pygame" #Título que aparece en la ventana del juego
+    _background_image_path =  "../media/background_image.png" #Ruta de la imagen de fondo
+    _fps = 8  #fps del juego
 
-    _mark_O = "../media/markX.png"
-    _mark_X = "../media/markO.png"
+    _mark_X = "../media/markX.png"
+    _mark_O = "../media/markO.png"
 
     _image_turno_x = "../media/turnX.png"
     _image_turno_o = "../media/turnO.png"
 
-    _size_block = (80,80)
+    _size_block = (80,80) #Tamaño de cada marca que se coloca en el tablero
 
     _posiciones = {
         1: (503, 324),
@@ -34,7 +41,7 @@ class Configurations:
         7: (496, 577),
         8: (629, 566),
         9: (770, 566),
-    }
+    } #Coordenadas centrales de cada una de las nueve casillas del tablero
 
     _teclas = {
         pygame.K_q: 1,
@@ -46,30 +53,20 @@ class Configurations:
         pygame.K_z: 7,
         pygame.K_x: 8,
         pygame.K_c: 9,
-    }
+    } #Asignamos teclas del teclado a cada casilla del tablero
 
-    _cell_number = []
+    _cell_number = [] #Lista vacía para llevar el control de las casillas ocupadas
+
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
-        """
-        Getter para screen_size
-        """
         return cls._screen_size
 
     @classmethod
     def get_game_title(cls) -> str:
-        """
-        Getter para get_game_title
-        """
         return cls._game_title
-
 
     @classmethod
     def get_fps(cls) -> int:
-        """
-        Getter para _fps
-        :return:
-        """
         return cls._fps
 
     @classmethod
@@ -81,11 +78,11 @@ class Configurations:
         return cls._mark_X
 
     @classmethod
-    def get_background_image_path(cls)-> str:
+    def get_background_image_path(cls) -> str:
         return cls._background_image_path
 
     @classmethod
-    def get_posiciones(cls)-> dict[int, tuple[int, int]]:
+    def get_posiciones(cls) -> dict[int, tuple[int, int]]:
         return cls._posiciones
 
     @classmethod
@@ -97,7 +94,7 @@ class Configurations:
         return cls._teclas
 
     @classmethod
-    def get_cell_number(cls)->list:
+    def get_cell_number(cls) -> list:
         return cls._cell_number
 
     @classmethod

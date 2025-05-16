@@ -43,6 +43,7 @@ def run_game() -> None:
 
     lista_imagen = [nueva_image]
 
+
     while not game_over:
         game_over = game_event(marks,list_turn,turno,lista_imagen)
         screen_refresh(screen, clock, background, marks,turno)

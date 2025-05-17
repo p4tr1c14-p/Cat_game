@@ -67,15 +67,14 @@ def run_game() -> None:
 
             while pygame.time.get_ticks() - start_time < 4000:  #Parpadeamos 4 segundos.
                 screen_refresh(screen, clock, background, marks, turno)  #Redibujamos fondo y marcas sin cambios.
-
+                creditos.blit(screen)  # Mostramos créditos.
                 if bandera:
                     result.blit(screen)  #Mostramos imagen del resultado.
-
-                creditos.blit(screen)  #Mostramos créditos.
 
                 pygame.display.flip()
                 pygame.time.delay(400)  #Tiempo entre parpadeos.
                 bandera = not bandera  #Alternamos mostrar/ocultar.
+
 
 if __name__ == '__main__':
     run_game()

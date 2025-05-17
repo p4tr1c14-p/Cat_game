@@ -49,7 +49,6 @@ def game_event(marks, list_turn, turn, lista_imagen,list_x,list_o,audio) -> bool
 
                 audio.play_keyboard_sound()
 
-
     return game_over
 
 def screen_refresh(screen: pygame.surface.Surface,

@@ -15,7 +15,7 @@ import pygame
 
 from Configurations import Configurations
 from Game_functionalities import game_event, screen_refresh,check_winner
-from Media import Background, Turn_image, Resultado_image
+from Media import Background, Turn_image, Resultado_image, CreditsIma
 
 def run_game() -> None:
     """
@@ -42,7 +42,7 @@ def run_game() -> None:
 
     lista_imagen = [nueva_image] #Guardamos la imagen en la lista para poder hacer control de turnos
 
-
+    creditos = CreditsIma()
     lista_x = []
     lista_o = []
 
@@ -58,6 +58,7 @@ def run_game() -> None:
         game_over,winner = check_winner(lista_x,lista_o)
 
         if game_over:
+
             result = Resultado_image(winner)
             bandera = True
             start_time = pygame.time.get_ticks()
@@ -68,6 +69,8 @@ def run_game() -> None:
 
                 if bandera:
                     result.blit(screen)
+
+                creditos.blit(screen)
 
                 pygame.display.flip()
                 pygame.time.delay(400)  # Tiempo entre parpadeos

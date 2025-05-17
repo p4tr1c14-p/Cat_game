@@ -1,5 +1,5 @@
 """
-Nombre: Equipo los Bugs
+Nombre: Equipo los Bugs.
 Fecha: 16 de mayo del 2025.
 
 Descripción:
@@ -10,14 +10,15 @@ Las configuraciones necesarias se integraron en la clase Configurations.
 
 import pygame
 from Configurations import Configurations
-from Media import Background, Turn_image
+from Media import Background, Turno_image
 from TikTacToe import TicTacToeMark
+from Version_0_7.Media import Audio
 
 
-def game_event(marks, list_turn, turn, lista_imagen, list_x, list_o, audio) -> bool:
+def game_event(marks:pygame.surface, list_turn:list[int], turn: pygame.surface, lista_imagen:list[pygame.surface], list_x:list[int], list_o:list[int], audio: Audio) -> bool:
     """
-    Administra los eventos del juego, como salir o presionar teclas
-    Devuelve True si se debe terminar el juego
+    Administra los eventos del juego, como salir o presionar teclas.
+    Devuelve True si se debe terminar el juego.
     """
     game_over = False
 
@@ -27,35 +28,35 @@ def game_event(marks, list_turn, turn, lista_imagen, list_x, list_o, audio) -> b
             game_over = True
 
         elif event.type == pygame.KEYDOWN:
-            #Verificamos si la tecla es válida y no ha sido usada
+            #Verificamos si la tecla es válida y no ha sido usada.
             if event.key in Configurations.get_teclas() and Configurations.get_teclas()[event.key] not in list_turn:
 
-                nueva_marca = TicTacToeMark(Configurations.get_teclas()[event.key])  #Generamos la marca en la casilla
-                list_turn.append(Configurations.get_teclas()[event.key])  #Registramos la casilla usada
-                marks.add(nueva_marca)  #La agregamos al grupo de marcas a dibujar
+                nueva_marca = TicTacToeMark(Configurations.get_teclas()[event.key])  #Generamos la marca en la casilla.
+                list_turn.append(Configurations.get_teclas()[event.key])  #Registramos la casilla usada.
+                marks.add(nueva_marca)  #La agregamos al grupo de marcas a dibujar.
 
-                turn.remove(lista_imagen[len(list_turn)-1])  #Quitamos la imagen del turno anterior
+                turn.remove(lista_imagen[len(list_turn)-1])  #Quitamos la imagen del turno anterior.
 
-                nueva_image = Turn_image()  #Generamos la imagen del nuevo turno
-                turn.add(nueva_image)  #La añadimos al grupo actual
-                lista_imagen.append(nueva_image)  #La guardamos en la lista de turnos
+                nueva_image = Turno_image()  #Generamos la imagen del nuevo turno.
+                turn.add(nueva_image)  #La añadimos al grupo actual.
+                lista_imagen.append(nueva_image)  #La guardamos en la lista de turnos.
 
-                #Clasificamos la jugada como de X o de O
+                #Clasificamos la jugada como de X o de O.
                 for i in range(len(list_turn)):
                     if i % 2 == 0 and list_turn[i] not in list_x:
                         list_x.append(Configurations.get_teclas()[event.key])
                     elif i % 2 != 0 and list_turn[i] not in list_o:
                         list_o.append(Configurations.get_teclas()[event.key])
 
-                audio.play_keyboard_sound()  #Reproducimos sonido de acción
+                audio.play_keyboard_sound()  #Reproducimos sonido de acción.
 
     return game_over
 
 
 def screen_refresh(screen: pygame.surface.Surface,
-                   clock: pygame.time.Clock, background: Background, marks, turn) -> None:
+                   clock: pygame.time.Clock, background: Background, marks: pygame.surface, turn: pygame.surface) -> None:
     """
-    Dibuja y actualiza todos los elementos visuales del juego en la pantalla
+    Dibuja y actualiza todos los elementos visuales del juego en la pantalla.
     """
     background.blit(screen)
     marks.draw(screen)
@@ -66,15 +67,15 @@ def screen_refresh(screen: pygame.surface.Surface,
 
 def check_winner(list_x, list_o) -> tuple[bool, int]:
     """
-    Verifica si hay un ganador o si se ha empatado
+    Verifica si hay un ganador o si se ha empatado.
     Devuelve una tupla con:
-    - True/False: si hay fin de juego
-    - 0 si gana X, 1 si gana O, 2 si es empate o sigue
+    - True/False: si hay fin de juego.
+    - 0 si gana X, 1 si gana O, 2 si es empate o sigue.
     """
     x = False
     y = False
 
-    #Comprobamos filas y columnas
+    #Comprobamos filas y columnas.
     for i in range(3):
         if (i + (i * 2) + 1) in list_x and (i + (i * 2) + 2) in list_x and (i + (i * 2) + 3) in list_x:
             x = True
@@ -101,12 +102,12 @@ def check_winner(list_x, list_o) -> tuple[bool, int]:
         elif 3 in list_o and 5 in list_o and 7 in list_o:
             y = True
 
-    #Verificamos si todas las casillas fueron usadas
+    #Verificamos si todas las casillas fueron usadas.
     if len(list_x) + len(list_o) == 9:
-        return True, 2 #Empate
+        return True, 2 #Empate.
     elif x:
-        return True, 0 #Gana X
+        return True, 0 #Gana X.
     elif y:
-        return True, 1 #Gana O
+        return True, 1 #Gana O.
 
-    return False, 2 #El juego continúa
+    return False, 2 #El juego continúa.

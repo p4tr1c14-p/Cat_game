@@ -1,5 +1,5 @@
 """
-Nombre: Equipo los Bugs
+Nombre: Equipo los Bugs.
 Fecha: 16 de mayo del 2025.
 
 Descripción:
@@ -14,7 +14,7 @@ from pygame.sprite import Sprite
 
 class Background:
     """
-    Clase que contiene y dibuja el fondo de pantalla del juego
+    Clase que contiene y dibuja el fondo de pantalla del juego.
     """
 
     def __init__(self):
@@ -22,44 +22,43 @@ class Background:
         self.image = pygame.image.load(background_image_path)
 
         screen_size = Configurations.get_screen_size()
-        self.image = pygame.transform.scale(self.image, screen_size) #Aquí nosotros escalamos la imagen al tamaño de la pantalla
+        self.image = pygame.transform.scale(self.image, screen_size) #Aquí nosotros escalamos la imagen al tamaño de la pantalla.
 
         self.rect = self.image.get_rect()
 
     def blit(self, screen: pygame.surface.Surface):
         """
-        Dibuja la imagen de fondo en la pantalla
+        Dibuja la imagen de fondo en la pantalla.
         """
-        screen.blit(self.image, self.rect) #Aquí nosotros dibujamos la imagen de fondo sobre la pantalla
+        screen.blit(self.image, self.rect) #Aquí nosotros dibujamos la imagen de fondo sobre la pantalla.
 
 
-class Turn_image(Sprite):
+class Turno_image(Sprite):
     """
     Clase que maneja la imagen que indica de quién es el turno
     """
 
-    turno = "X" #Aquí nosotros inicializamos el turno con la letra "X"
+    turno = "X" #Aquí nosotros inicializamos el turno con la letra "X".
 
     def __init__(self):
-        turno = "X" #Reiniciamos el valor local del turno a "X"
         super().__init__()
 
-        if Turn_image.turno == "X":
+        if Turno_image.turno == "X":
             self.image = pygame.image.load(Configurations.get_image_turno_x())
-            Turn_image.turno = "O" #Aquí nosotros cambiamos el turno a "O"
+            Turno_image.turno = "O" #Aquí nosotros cambiamos el turno a "O".
         else:
             self.image = pygame.image.load(Configurations.get_image_turno_o())
-            Turn_image.turno = "X" #Aquí nosotros cambiamos el turno a "X"
+            Turno_image.turno = "X" #Aquí nosotros cambiamos el turno a "X".
 
         self.image = pygame.transform.scale(self.image, (600, 150))
         self.rect = self.image.get_rect()
-        self.rect.centerx = Configurations.get_center_x() #Aquí nosotros centramos horizontalmente la imagen
-        self.rect.bottom = Configurations.get_bottom_x() #Aquí nosotros ajustamos la posición inferior
+        self.rect.centerx = Configurations.get_center_x() #Aquí nosotros centramos horizontalmente la imagen.
+        self.rect.bottom = Configurations.get_bottom_x() #Aquí nosotros ajustamos la posición inferior.
 
 
 class Resultado_image:
     """
-    Clase que muestra la imagen del resultado del juego
+    Clase que muestra la imagen del resultado del juego.
     """
 
     def __init__(self, result):
@@ -68,7 +67,7 @@ class Resultado_image:
 
     def blit(self, screen: pygame.surface.Surface) -> None:
         """
-        Dibuja la imagen del resultado en pantalla
+        Dibuja la imagen del resultado en pantalla.
         """
         self.rect.centerx = screen.get_rect().centerx
         self.rect.bottom = 400
@@ -77,12 +76,12 @@ class Resultado_image:
 
 class CreditsIma(Sprite):
     """
-    Clase que muestra la imagen de los créditos
+    Clase que muestra la imagen de los créditos.
     """
 
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("../media/Creditos_Gato.png") #Aquí nosotros cargamos la imagen de créditos
+        self.image = pygame.image.load("../media/Creditos_Gato.png") #Aquí nosotros cargamos la imagen de créditos.
         self.rect = self.image.get_rect()
 
     def blit(self, screen: pygame.surface.Surface) -> None:
@@ -96,13 +95,13 @@ class CreditsIma(Sprite):
 
 class Audio:
     """
-    Clase que contiene el audio del videojuego, incluyendo la música y los efectos de sonido
+    Clase que contiene el audio del videojuego, incluyendo la música y los efectos de sonido.
     """
 
     def __init__(self):
-        pygame.mixer.music.load(Configurations.get_music_path()) #Aquí nosotros cargamos la música del juego
-        self._keyboard_sound = pygame.mixer.Sound(Configurations.get_keyboard_sound()) #Aquí nosotros cargamos el sonido del teclado
-        self._results_sound = pygame.mixer.Sound(Configurations.get_results_sound()) #Aquí nosotros cargamos el sonido del resultado
+        pygame.mixer.music.load(Configurations.get_music_path()) #Aquí nosotros cargamos la música del juego.
+        self._keyboard_sound = pygame.mixer.Sound(Configurations.get_keyboard_sound()) #Aquí nosotros cargamos el sonido del teclado.
+        self._results_sound = pygame.mixer.Sound(Configurations.get_results_sound()) #Aquí nosotros cargamos el sonido del resultado.
 
     @classmethod
     def play_music(cls, volume) -> None:
@@ -115,19 +114,19 @@ class Audio:
     @classmethod
     def music_fadeout(cls, time) -> None:
         """
-        Realiza un desvanecimiento de la música
-        :param time: Tiempo del desvanecimiento en milisegundos
+        Realiza un desvanecimiento de la música.
+        :param time: Tiempo del desvanecimiento en milisegundos.
         """
         pygame.mixer.music.fadeout(time)
 
     def play_keyboard_sound(self) -> None:
         """
-        Reproduce el efecto de sonido al seleccionar una casilla
+        Reproduce el efecto de sonido al seleccionar una casilla.
         """
         self._keyboard_sound.play()
 
     def play_results_sound(self) -> None:
         """
-        Reproduce el efecto de sonido del resultado
+        Reproduce el efecto de sonido del resultado.
         """
         self._results_sound.play()

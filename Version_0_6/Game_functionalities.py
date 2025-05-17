@@ -15,7 +15,7 @@ from Configurations import Configurations
 from Media import Background, Turn_image
 from TikTacToe import TicTacToeMark
 
-def game_event(marks, list_turn, turn, lista_imagen, list_x, list_o) -> bool:
+def game_event(marks:pygame.surface, list_turn:list[int], turn:pygame.surface, lista_imagen:list[pygame.surface], list_x:list[int], list_o:list[int]) -> bool:
     """
     Función que administra los eventos del juego
     Procesa las teclas presionadas, crea nuevas marcas en el tablero y actualiza los turnos

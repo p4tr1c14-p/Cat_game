@@ -17,7 +17,7 @@ from pygame.sprite import Sprite
 
 class TicTacToeMark(Sprite):
     configurations = Configurations()
-    turno = "X" #Inicializamos el turno en "X" para que sea la primera marca en colocarse
+    turno = "X" #Inicializamos el turno en "X" para que sea la primera marca en colocarse.
 
     def __init__(self, casilla):
         super().__init__() #Llamamos al constructor de la clase padre Sprite para inicializar correctamente la marca

@@ -10,6 +10,7 @@ Se implementó la clase TurnImage para manejar este cambio visual y se integraro
 las configuraciones necesarias en la clase Configurations.
 Aún no se incorpora la lógica para detectar al ganador
 """
+from symtable import Class
 
 import pygame
 from Configurations import Configurations
@@ -52,14 +53,12 @@ class Turn_image(Sprite):
             self.image = pygame.image.load(Configurations.get_image_turno_o()) #Cargamos la imagen que indica que es el turno de "O"
             Turn_image.turno = "X" #Cambiamos el turno a "X" para la siguiente vez
 
-        self.image = pygame.transform.scale(self.image, (500, 200)) #Escalamos la imagen del turno para que tenga el tamaño adecuado
+        self.image = pygame.transform.scale(self.image, (600, 150)) #Escalamos la imagen del turno para que tenga el tamaño adecuado
         self.rect = self.image.get_rect()
         self.rect.centerx = Configurations.get_center_x() #Centramos la imagen horizontalmente
         self.rect.bottom = Configurations.get_bottom_x() #Ajustamos las medidas de la parte inferior de la imagen
 
 class Resultado_image:
-    configurations = Configurations()
-
     def __init__(self, result):
         super().__init__()  # Llamamos al constructor de la clase padre Sprite para inicializar correctamente la marca
 
@@ -79,5 +78,16 @@ class Resultado_image:
         :param screen: Pantalla en donde se dibujaa
         """
         self.rect.centerx = screen.get_rect().centerx
-        self.rect.bottom = 500
+        self.rect.bottom = 400
+        screen.blit(self.image, self.rect)
+
+class CreditsIma:
+    def __init__(self):
+        self.image = pygame.image.load("../media/Creditos_Gato.png")
+        self.rect = self.image.get_rect()
+
+
+    def blit(self, screen: pygame.surface.Surface) -> None:
+        self.rect.centerx = screen.get_rect().centerx
+        self.rect.bottom = 800
         screen.blit(self.image, self.rect)

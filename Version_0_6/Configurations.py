@@ -22,7 +22,7 @@ class Configurations:
     _game_title = "Cat game en pygame" #Título que aparece en la ventana del juego
     _background_image_path =  "../media/background_image.png" #Ruta de la imagen de fondo
     _fps = 8  #fps del juego
-    _game_over_screen_time = 4
+
 
     _mark_X = "../media/markX.png"
     _mark_O = "../media/markO.png"
@@ -123,9 +123,4 @@ class Configurations:
     def get_result_image(cls)-> list[str]:
         return cls._result_image
 
-    @classmethod
-    def get_game_over_screen_time(cls) -> int:
-        """
-        Getter para _apple_color
-        """
-        return cls._game_over_screen_time
+

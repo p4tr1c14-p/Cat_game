@@ -14,7 +14,7 @@ Aún no se incorpora la lógica para detectar al ganador
 import pygame
 
 from Configurations import Configurations
-from Game_functionalities import game_event, screen_refresh,check_winner,game_over_screen
+from Game_functionalities import game_event, screen_refresh,check_winner
 from Media import Background, Turn_Image, Resultado_image
 
 def run_game() -> None:
@@ -46,10 +46,6 @@ def run_game() -> None:
     lista_x = []
     lista_o = []
 
-    mostrar_resultado = True
-    intervalo_parpadeo = 500  # milisegundos
-    ultimo_cambio = pygame.time.get_ticks()
-
 
     while not game_over:
         game_over = game_event(marks, list_turn, turno, lista_imagen,b,lista_x,lista_o)
@@ -62,9 +58,21 @@ def run_game() -> None:
         game_over,winner = check_winner(lista_x,lista_o)
         if game_over:
             result = Resultado_image(winner)
-            result.blit(screen)
-            pygame.display.flip()
-            game_over_screen(screen,result)
+            start_time = pygame.time.get_ticks()
+            blink = True
+
+            while pygame.time.get_ticks() - start_time < 4000:  # 4 segundos
+                background.blit(screen)
+                marks.draw(screen)
+
+                if blink:
+                    result.blit(screen)
+
+                pygame.display.flip()
+                pygame.time.delay(500)  # Espera 500 ms entre parpadeos
+                blink = not blink  # Cambia visibilidad
+
+
 
 if __name__ == '__main__':
     run_game()

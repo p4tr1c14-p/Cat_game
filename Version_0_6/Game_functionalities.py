@@ -105,8 +105,7 @@ def check_winner(list_x,list_o)->tuple[bool,int]:
 
     return False,2
 
-def game_over_screen(screen,result):
-    time.sleep(Configurations.get_game_over_screen_time())
+
 
 
 

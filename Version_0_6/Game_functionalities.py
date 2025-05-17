@@ -13,11 +13,10 @@ Aún no se incorpora la lógica para detectar al ganador
 
 import pygame
 from Configurations import Configurations
-from Media import Background, Turn_Image
+from Media import Background, Turn_image
 from TikTacToe import TicTacToeMark
-import time
 
-def game_event(marks, list_turn, turn, lista_imagen,b,list_x,list_o) -> bool:
+def game_event(marks, list_turn, turn, lista_imagen,list_x,list_o) -> bool:
     """
     Función que administra los eventos del juego
     return: La bandera del fin del juego
@@ -38,7 +37,7 @@ def game_event(marks, list_turn, turn, lista_imagen,b,list_x,list_o) -> bool:
 
                 turn.remove(lista_imagen[len(list_turn)-1]) #Esto es para remover la imagen del turno anterior
 
-                nueva_image = Turn_Image() #Creamos la nueva imagen de turno
+                nueva_image = Turn_image() #Creamos la nueva imagen de turno
                 turn.add(nueva_image) #La agregamos al grupo que se va a mostrar
                 lista_imagen.append(nueva_image) #La guardamos en la lista para tener el control de turnos
 

@@ -37,7 +37,7 @@ class Background:
         """
         screen.blit(self.image, self.rect) #Dibujamos la imagen de fondo sobre la superficie de la pantalla
 
-class Turn_Image(Sprite):
+class Turn_image(Sprite):
 
     turno = "X" #Inicializamos el turno con la letra "X"
 
@@ -45,19 +45,19 @@ class Turn_Image(Sprite):
         turno = "X" #Reiniciamos el valor de turno a "X" (este valor no afecta al atributo de clase =D)
         super().__init__()
 
-        if Turn_Image.turno == "X":
+        if Turn_image.turno == "X":
             self.image = pygame.image.load(Configurations.get_image_turno_x()) #Cargamos la imagen que indica que es el turno de "X"
-            Turn_Image.turno = "O" #Cambiamos el turno a "O" para la siguiente vez
+            Turn_image.turno = "O" #Cambiamos el turno a "O" para la siguiente vez
         else:
             self.image = pygame.image.load(Configurations.get_image_turno_o()) #Cargamos la imagen que indica que es el turno de "O"
-            Turn_Image.turno = "X" #Cambiamos el turno a "X" para la siguiente vez
+            Turn_image.turno = "X" #Cambiamos el turno a "X" para la siguiente vez
 
         self.image = pygame.transform.scale(self.image, (500, 200)) #Escalamos la imagen del turno para que tenga el tamaño adecuado
         self.rect = self.image.get_rect()
         self.rect.centerx = Configurations.get_center_x() #Centramos la imagen horizontalmente
         self.rect.bottom = Configurations.get_bottom_x() #Ajustamos las medidas de la parte inferior de la imagen
 
-class  Resultado_image:
+class Resultado_image:
     configurations = Configurations()
 
     def __init__(self, result):
@@ -79,5 +79,5 @@ class  Resultado_image:
         :param screen: Pantalla en donde se dibujaa
         """
         self.rect.centerx = screen.get_rect().centerx
-        self.rect.bottom = Configurations.get_bottom_x()
+        self.rect.bottom = 500
         screen.blit(self.image, self.rect)

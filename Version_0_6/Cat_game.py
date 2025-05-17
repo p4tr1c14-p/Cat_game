@@ -15,7 +15,7 @@ import pygame
 
 from Configurations import Configurations
 from Game_functionalities import game_event, screen_refresh,check_winner
-from Media import Background, Turn_Image, Resultado_image
+from Media import Background, Turn_image, Resultado_image
 
 def run_game() -> None:
     """
@@ -37,18 +37,18 @@ def run_game() -> None:
 
     turno = pygame.sprite.Group() #Creamos un grupo de sprites para la imagen del turno
 
-    nueva_image = Turn_Image() #Creamos la imagen inicial del turno
+    nueva_image = Turn_image() #Creamos la imagen inicial del turno
     turno.add(nueva_image) #La agregamos al grupo de turno
 
     lista_imagen = [nueva_image] #Guardamos la imagen en la lista para poder hacer control de turnos
 
-    b = True
+
     lista_x = []
     lista_o = []
 
 
     while not game_over:
-        game_over = game_event(marks, list_turn, turno, lista_imagen,b,lista_x,lista_o)
+        game_over = game_event(marks, list_turn, turno, lista_imagen,lista_x,lista_o)
         screen_refresh(screen, clock, background, marks, turno)
         check_winner(lista_x,lista_o)
 
@@ -56,21 +56,26 @@ def run_game() -> None:
             break
 
         game_over,winner = check_winner(lista_x,lista_o)
+
         if game_over:
             result = Resultado_image(winner)
+            bandera = True
             start_time = pygame.time.get_ticks()
-            b = True
 
-            while pygame.time.get_ticks() - start_time < 4000:  # 4 segundos
-                background.blit(screen)
-                marks.draw(screen)
+            while pygame.time.get_ticks() - start_time < 4000:  # Parpadea durante 4 segundos
+                # Redibujamos el fondo y marcas sin tocarlas
+                screen_refresh(screen, clock, background, marks, turno)
 
-                if b:
+                if bandera:
                     result.blit(screen)
 
                 pygame.display.flip()
-                pygame.time.delay(500)  # Espera 500 ms entre parpadeos
-                b = not b  # Cambia visibilidad
+                pygame.time.delay(400)  # Tiempo entre parpadeos
+                bandera = not bandera  # Alternar mostrar/ocultar
+
+
+
+
 
 
 

@@ -123,4 +123,3 @@ class Configurations:
     def get_result_image(cls)-> list[str]:
         return cls._result_image
 
-

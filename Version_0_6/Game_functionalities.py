@@ -1,14 +1,13 @@
 """
-Nombre:
-Fecha: 15 de mayo del 2025.
+Nombre: Equipo los Bugs
+Fecha: 16 de mayo del 2025.
 
 Descripción:
-En esta versión se incluye la verificación para evitar colocar marcas en casillas ya ocupadas.
-Se agregaron imágenes que indican de forma visual a quién le toca el turno (X o O),
-y se alternan dinámicamente con cada jugada.
-Se implementó la clase TurnImage para manejar este cambio visual y se integraron todas
-las configuraciones necesarias en la clase Configurations.
-Aún no se incorpora la lógica para detectar al ganador
+En esta versión se implementó la lógica para determinar al ganador del juego.
+Se añadió la función check_winner() para detectar si ganó el jugador X, O o si hubo empate.
+También se agregó una pantalla de resultados y créditos, mostrando una imagen dependiendo del resultado.
+Por último, se incluyó la función game_over_screen() para mostrar el resultado final usando animaciones
+simples y redibujado de pantalla.
 """
 
 import pygame
@@ -16,14 +15,26 @@ from Configurations import Configurations
 from Media import Background, Turn_image
 from TikTacToe import TicTacToeMark
 
-def game_event(marks, list_turn, turn, lista_imagen,list_x,list_o) -> bool:
+def game_event(marks, list_turn, turn, lista_imagen, list_x, list_o) -> bool:
     """
     Función que administra los eventos del juego
-    return: La bandera del fin del juego
+    Procesa las teclas presionadas, crea nuevas marcas en el tablero y actualiza los turnos
+    Mantiene actualizadas las listas de posiciones ocupadas por cada jugador
+
+    Args:
+        marks: Grupo de sprites que contiene las marcas en el tablero
+        list_turn: Lista que contiene las casillas ya utilizadas
+        turn: Grupo de sprites que contiene la imagen del turno actual
+        lista_imagen: Lista que contiene las imágenes de los turnos
+        list_x: Lista de posiciones ocupadas por el jugador X
+        list_o: Lista de posiciones ocupadas por el jugador O
+
+    Returns:
+        bool: La bandera que indica si el juego ha terminado
     """
     game_over = False
 
-    for event in pygame.event.get(): #Revisamos todos los eventos que ocurren
+    for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
             game_over = True
@@ -54,68 +65,81 @@ def screen_refresh(screen: pygame.surface.Surface,
                    clock: pygame.time.Clock, background: Background, marks, turn) -> None:
     """
     Función que administra los elementos visuales del juego
+    Dibuja el fondo, las marcas colocadas y el indicador de turno actual
+    Actualiza la pantalla y controla la velocidad del juego
+
+    Args:
+        screen: Superficie de pygame donde se dibujan los elementos
+        clock: Reloj para controlar los FPS
+        background: Objeto que contiene la imagen de fondo
+        marks: Grupo de sprites con las marcas X y O
+        turn: Grupo de sprites con la imagen del turno actual
     """
-    background.blit(screen) #Dibujamos el fondo en la pantalla
+    background.blit(screen)
 
-    marks.draw(screen) #Dibujamos todas las marcas X y O que se han colocado
+    marks.draw(screen)
 
-    turn.draw(screen) #Dibujamos la imagen del turno actual
+    turn.draw(screen)
 
-    pygame.display.flip() #Actualizamos toda la pantalla con los nuevos elementos
+    pygame.display.flip()
 
-    clock.tick(Configurations.get_fps()) #Limitamos la velocidad del juego a los fps definidos
+    clock.tick(Configurations.get_fps())
 
-def check_winner(list_x,list_o)->tuple[bool,int]:
-    y = False
-    x = False
+def check_winner(list_x, list_o) -> tuple[bool, int]:
+    """
+    Verifica si hay un ganador o empate en el juego
+    Comprueba todas las combinaciones ganadoras posibles para ambos jugadores
+
+    Args:
+        list_x: Lista de posiciones ocupadas por el jugador X
+        list_o: Lista de posiciones ocupadas por el jugador O
+
+    Returns:
+        tuple[bool, int]: Una tupla con:
+            - bool: True si el juego ha terminado, False en caso contrario
+            - int: 0 si ganó X, 1 si ganó O, 2 si hay empate o aún no hay ganador
+    """
+    y = False  #Variable para indicar si el jugador O ha ganado
+    x = False  #Variable para indicar si el jugador X ha ganado
+
+    #Verificamos filas y columnas para jugador X
     for i in range(3):
-       if (i+(i*2) + 1) in list_x and (i+(i*2) + 2) in list_x and (i+(i*2) + 3) in list_x:
+       if (i+(i*2) + 1) in list_x and (i+(i*2) + 2) in list_x and (i+(i*2) + 3) in list_x:  #Comprobamos filas
            x = True
            break
-       elif i+1 in list_x and i+4 in list_x and i+7 in list_x:
+       elif i+1 in list_x and i+4 in list_x and i+7 in list_x:  #Comprobamos columnas
            x = True
            break
+
+    #Verificamos diagonales para jugador X
     if not x:
-        if 1 in list_x and 5 in list_x and 9  in list_x:
+        if 1 in list_x and 5 in list_x and 9 in list_x:  #Comprobamos diagonal principal
             x = True
-        elif 3 in list_x and 5 in list_x and 7  in list_x:
+        elif 3 in list_x and 5 in list_x and 7 in list_x:  #Comprobamos diagonal inversa
             x = True
 
+    #Verificamos filas y columnas para jugador O
     for i in range(3):
-       if (i+(i*2) + 1) in list_o and (i+(i*2) + 2) in list_o and (i+(i*2) + 3) in list_o:
+       if (i+(i*2) + 1) in list_o and (i+(i*2) + 2) in list_o and (i+(i*2) + 3) in list_o:  #Comprobamos filas
            y = True
            break
-       elif i+1 in list_o and i+4 in list_o and i+7 in list_o:
+       elif i+1 in list_o and i+4 in list_o and i+7 in list_o:  #Comprobamos columnas
            y = True
            break
-    if not y:
-        if 1 in list_o and 5 in list_o and 9  in list_o:
-            y = True
-        elif 3 in list_o and 5 in list_o and 7  in list_o:
-            y= True
 
-    if len(list_x) + len(list_o) == 9:
-        return True, 2
-    elif  x:
-        return True,0
-    elif y:
+    #Verificamos diagonales para jugador O
+    if not y:
+        if 1 in list_o and 5 in list_o and 9 in list_o:  #Comprobamos diagonal principal
+            y = True
+        elif 3 in list_o and 5 in list_o and 7 in list_o:  #Comprobamos diagonal inversa
+            y = True
+
+    #Determinamos el resultado del juego
+    if len(list_x) + len(list_o) == 9:  #Si todas las casillas están ocupadas
+        return True, 2  #Empate
+    elif x:  #Si ganó X
+        return True, 0
+    elif y:  #Si ganó O
         return True, 1
 
-
-    return False,2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return False, 2  #El juego continúa

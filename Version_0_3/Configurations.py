@@ -1,5 +1,5 @@
 """
-Nombre:
+Nombre: Equipo los Bugs
 Fecha: 13 de mayo del 2025.
 
 Descripción:
@@ -38,4 +38,7 @@ class Configurations:
 
     @classmethod
     def get_background_image_path(cls) -> str:
+        """
+        Getter para _background_image_path
+        """
         return cls._background_image_path

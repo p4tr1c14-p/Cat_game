@@ -1,14 +1,11 @@
 """
-Nombre:
-Fecha: 15 de mayo del 2025.
+Nombre: Equipo los Bugs
+Fecha: 16 de mayo del 2025.
 
 Descripción:
-En esta versión se incluye la verificación para evitar colocar marcas en casillas ya ocupadas.
-Se agregaron imágenes que indican de forma visual a quién le toca el turno (X o O),
-y se alternan dinámicamente con cada jugada.
-Se implementó la clase TurnImage para manejar este cambio visual y se integraron todas
-las configuraciones necesarias en la clase Configurations.
-Aún no se incorpora la lógica para detectar al ganador
+Se agregó música de fondo y efectos de sonido al juego mediante la clase Audio.
+Las funciones del juego ahora reproducen sonidos según la acción del jugador.
+Las configuraciones necesarias se integraron en la clase Configurations.
 """
 
 import pygame
@@ -16,10 +13,18 @@ from Configurations import Configurations
 from pygame.sprite import Sprite
 
 class TicTacToeMark(Sprite):
+    """
+    Clase que representa una marca en el tablero de Tic Tac Toe (X o O).
+    Alterna dinámicamente las imágenes según el turno actual.
+    """
     configurations = Configurations()
     turno = "X" #Inicializamos el turno en "X" para que sea la primera marca en colocarse.
 
     def __init__(self, casilla):
+        """
+        Constructor que coloca una marca (X o O) en la casilla indicada,
+        alternando el turno y ajustando la imagen y posición
+        """
         super().__init__() #Llamamos al constructor de la clase padre Sprite para inicializar correctamente la marca
 
         if TicTacToeMark.turno == "X":

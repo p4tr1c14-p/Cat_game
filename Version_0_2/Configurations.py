@@ -1,5 +1,5 @@
 """
-Nombre:
+Nombre: Equipo los Bugs
 Fecha: 12 de mayo del 2025.
 
 Descripción:
@@ -30,4 +30,7 @@ class Configurations:
 
     @classmethod
     def get_background(cls) -> tuple[int, int, int]:
+        """
+        Getter para _background_image_path
+        """
         return cls._background  #Regresamos el color de fondo como tupla RGB

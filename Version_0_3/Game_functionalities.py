@@ -17,15 +17,15 @@ from Media import Background
 
 def game_event() -> bool:
     """
-    Función que administra los eventos del juego
-    return: La bandera del fin del juego
+    Función que administra los eventos del juego.
+    return: La bandera del fin del juego.
     """
 
     game_over = False
 
-    #Revisamos todos los eventos generados por el usuario
+    #Revisamos todos los eventos generados por el usuario.
     for event in pygame.event.get():
-        #Si el usuario cierra la ventana, terminamos el juego
+        #Si el usuario cierra la ventana, terminamos el juego.
         if event.type == pygame.QUIT:
             game_over = True
 
@@ -35,11 +35,11 @@ def game_event() -> bool:
 def screen_refresh(screen: pygame.surface.Surface,
                    clock: pygame.time.Clock, background: Background) -> None:
     """
-    Función que administra los elementos visuales del juego
+    Función que administra los elementos visuales del juego.
     """
-    #Dibujamos la imagen de fondo en la pantalla
+    #Dibujamos la imagen de fondo en la pantalla.
     background.blit(screen)
 
-    pygame.display.flip()  #Actualizamos el contenido de la ventana
+    pygame.display.flip()  #Actualizamos el contenido de la ventana.
 
     clock.tick(Configurations.get_fps())

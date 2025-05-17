@@ -17,8 +17,8 @@ from TikTacToe import TicTacToeMark
 
 def game_event(marks) -> bool:
     """
-    Función que administra los eventos del juego
-    return: La bandera del fin del juego (True si se cierra la ventana)
+    Función que administra los eventos del juego.
+    return: La bandera del fin del juego (True si se cierra la ventana).
     """
 
     game_over = False
@@ -27,13 +27,13 @@ def game_event(marks) -> bool:
         if event.type == pygame.QUIT:
             game_over = True
 
-        #Si el usuario presiona una tecla
+        #Si el usuario presiona una tecla.
         elif event.type == pygame.KEYDOWN:
-            #Verificamos si la tecla corresponde a una celda válida del tablero
+            #Verificamos si la tecla corresponde a una celda válida del tablero.
             if event.key in Configurations.get_teclas():
-                #Creamos una nueva marca en la celda correspondiente según la tecla presionada
+                #Creamos una nueva marca en la celda correspondiente según la tecla presionada.
                 nueva_marca = TicTacToeMark(Configurations.get_teclas()[event.key])
-                marks.add(nueva_marca)  #Agregamos la nueva marca al grupo de marcas
+                marks.add(nueva_marca)  #Agregamos la nueva marca al grupo de marcas.
 
     return game_over
 
@@ -41,15 +41,15 @@ def game_event(marks) -> bool:
 def screen_refresh(screen: pygame.surface.Surface,
                    clock: pygame.time.Clock, background: Background, marks) -> None:
     """
-    Función que administra los elementos visuales del juego
+    Función que administra los elementos visuales del juego.
     """
 
     background.blit(screen)
 
-    #Dibujamos todas las marcas actuales en sus posiciones correspondientes
+    #Dibujamos todas las marcas actuales en sus posiciones correspondientes.
     marks.draw(screen)
 
-    #Actualizamos la pantalla para mostrar todos los cambios gráficos
+    #Actualizamos la pantalla para mostrar todos los cambios gráficos.
     pygame.display.flip()
 
     clock.tick(Configurations.get_fps())

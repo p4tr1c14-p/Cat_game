@@ -17,13 +17,13 @@ from Media import Background
 
 def run_game() -> None:
     """
-    Función principal del videojuego
+    Función principal del videojuego.
     """
     pygame.init()
 
     clock = pygame.time.Clock()
 
-    #Creamos la ventana con el tamaño definido en las configuraciones
+    #Creamos la ventana con el tamaño definido en las configuraciones.
     screen = pygame.display.set_mode(Configurations.get_screen_size())
 
     pygame.display.set_caption(Configurations.get_game_title())
@@ -31,14 +31,14 @@ def run_game() -> None:
     game_over = False
     background = Background()
 
-    #Creamos un grupo para contener las marcas
+    #Creamos un grupo para contener las marcas.
     marks = pygame.sprite.Group()
 
     while not game_over:
-        #Gestionamos eventos y actualizamos la lógica del juego
+        #Gestionamos eventos y actualizamos la lógica del juego.
         game_over = game_event(marks)
 
-        #Actualizamos la pantalla con los elementos visuales
+        #Actualizamos la pantalla con los elementos visuales.
         screen_refresh(screen, clock, background, marks)
 
 if __name__ == '__main__':

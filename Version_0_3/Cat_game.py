@@ -1,5 +1,5 @@
 """
-Nombre: Equipo los Bugs
+Nombre: Equipo los Bugs.
 Fecha: 13 de mayo del 2025.
 
 Descripción:
@@ -18,9 +18,9 @@ from Media import Background
 
 def run_game() -> None:
     """
-    Función principal del videojuego
+    Función principal del videojuego.
     """
-    #Inicializamos pygame antes de usar sus funcionalidades
+    #Inicializamos pygame antes de usar sus funcionalidades.
     pygame.init()
 
     clock = pygame.time.Clock()
@@ -33,8 +33,8 @@ def run_game() -> None:
     background = Background()
 
     while not game_over:
-        game_over = game_event()  #Verificamos si se debe cerrar el juego
-        screen_refresh(screen, clock, background)  #Actualizamos la pantalla en cada iteración
+        game_over = game_event()  #Verificamos si se debe cerrar el juego.
+        screen_refresh(screen, clock, background)  #Actualizamos la pantalla en cada iteración.
 
 
 if __name__ == '__main__':

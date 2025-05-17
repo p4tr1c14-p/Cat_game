@@ -15,8 +15,9 @@ import pygame
 from Configurations import Configurations
 from Media import Background, Turn_Image
 from TikTacToe import TicTacToeMark
+import time
 
-def game_event(marks, list_turn, turn, lista_imagen) -> bool:
+def game_event(marks, list_turn, turn, lista_imagen,b,list_x,list_o) -> bool:
     """
     Función que administra los eventos del juego
     return: La bandera del fin del juego
@@ -41,6 +42,13 @@ def game_event(marks, list_turn, turn, lista_imagen) -> bool:
                 turn.add(nueva_image) #La agregamos al grupo que se va a mostrar
                 lista_imagen.append(nueva_image) #La guardamos en la lista para tener el control de turnos
 
+                for i in range(len(list_turn)):
+                    if i %2 == 0 and list_turn[i] not in list_x:
+                        list_x.append(Configurations.get_teclas()[event.key])
+                    elif i %2 != 0 and list_turn[i] not in list_o:
+                        list_o.append(Configurations.get_teclas()[event.key])
+
+
     return game_over
 
 def screen_refresh(screen: pygame.surface.Surface,
@@ -57,3 +65,59 @@ def screen_refresh(screen: pygame.surface.Surface,
     pygame.display.flip() #Actualizamos toda la pantalla con los nuevos elementos
 
     clock.tick(Configurations.get_fps()) #Limitamos la velocidad del juego a los fps definidos
+
+def check_winner(list_x,list_o)->tuple[bool,int]:
+    y = False
+    x = False
+    for i in range(3):
+       if (i+(i*2) + 1) in list_x and (i+(i*2) + 2) in list_x and (i+(i*2) + 3) in list_x:
+           x = True
+           break
+       elif i+1 in list_x and i+4 in list_x and i+7 in list_x:
+           x = True
+           break
+    if not x:
+        if 1 in list_x and 5 in list_x and 9  in list_x:
+            x = True
+        elif 3 in list_x and 5 in list_x and 7  in list_x:
+            x = True
+
+    for i in range(3):
+       if (i+(i*2) + 1) in list_o and (i+(i*2) + 2) in list_o and (i+(i*2) + 3) in list_o:
+           y = True
+           break
+       elif i+1 in list_o and i+4 in list_o and i+7 in list_o:
+           y = True
+           break
+    if not y:
+        if 1 in list_o and 5 in list_o and 9  in list_o:
+            y = True
+        elif 3 in list_o and 5 in list_o and 7  in list_o:
+            y= True
+
+    if len(list_x) + len(list_o) == 9:
+        return True, 2
+    elif  x:
+        return True,0
+    elif y:
+        return True, 1
+
+
+    return False,2
+
+def game_over_screen(screen,result):
+    time.sleep(Configurations.get_game_over_screen_time())
+
+
+
+
+
+
+
+
+
+
+
+
+
+

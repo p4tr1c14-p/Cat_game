@@ -22,6 +22,7 @@ class Configurations:
     _game_title = "Cat game en pygame" #Título que aparece en la ventana del juego
     _background_image_path =  "../media/background_image.png" #Ruta de la imagen de fondo
     _fps = 8  #fps del juego
+    _game_over_screen_time = 4
 
     _mark_X = "../media/markX.png"
     _mark_O = "../media/markO.png"
@@ -59,6 +60,8 @@ class Configurations:
 
     _center_x = 650 #Centramos la imagen horizontalmente
     _bottom_x = 250 #Ajustamos las medidas de la parte inferior de la imagen
+
+    _result_image = ["../media/winX.png","../media/winO.png","../media/draw.png"]
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
@@ -115,3 +118,14 @@ class Configurations:
     @classmethod
     def get_bottom_x(cls)->int:
         return cls._bottom_x
+
+    @classmethod
+    def get_result_image(cls)-> list[str]:
+        return cls._result_image
+
+    @classmethod
+    def get_game_over_screen_time(cls) -> int:
+        """
+        Getter para _apple_color
+        """
+        return cls._game_over_screen_time

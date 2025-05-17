@@ -15,6 +15,7 @@ import pygame
 from Configurations import Configurations
 from pygame.sprite import Sprite
 
+
 class Background:
     """
     Clase que contiene el fondo de pantalla
@@ -55,3 +56,28 @@ class Turn_Image(Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = Configurations.get_center_x() #Centramos la imagen horizontalmente
         self.rect.bottom = Configurations.get_bottom_x() #Ajustamos las medidas de la parte inferior de la imagen
+
+class  Resultado_image:
+    configurations = Configurations()
+
+    def __init__(self, result):
+        super().__init__()  # Llamamos al constructor de la clase padre Sprite para inicializar correctamente la marca
+
+        if result == 0:
+            self.image = pygame.image.load(Configurations.get_result_image()[result])
+            self.rect = self.image.get_rect()
+        elif result == 1:
+            self.image = pygame.image.load(Configurations.get_result_image()[result])
+            self.rect = self.image.get_rect()
+        else:
+            self.image = pygame.image.load(Configurations.get_result_image()[result])
+            self.rect = self.image.get_rect()
+
+    def blit(self, screen: pygame.surface.Surface) -> None:
+        """
+        Se utiliza para dibujar la manzana
+        :param screen: Pantalla en donde se dibujaa
+        """
+        self.rect.centerx = screen.get_rect().centerx
+        self.rect.bottom = Configurations.get_bottom_x()
+        screen.blit(self.image, self.rect)

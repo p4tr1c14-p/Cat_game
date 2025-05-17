@@ -3,6 +3,9 @@ Nombre: Equipo los Bugs
 Fecha: 12 de mayo del 2025.
 
 Descripción:
+Se añadieron dos nuevos módulos: Configurations.py con la clase Configurations para las configuraciones
+del juego, y Game_functionalities.py con las funciones game_events() y screen_refresh().
+Además, se refactorizó el código anterior para incorporar estos cambios.
 """
 import pygame
 from Configurations import Configurations

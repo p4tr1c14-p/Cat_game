@@ -1,5 +1,5 @@
 """
-Nombre: Equipo los Bugs
+Nombre: Equipo los Bugs.
 Fecha: 16 de mayo del 2025.
 
 Descripción:

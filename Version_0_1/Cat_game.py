@@ -2,7 +2,7 @@
 Nombre: Equipo los Bugs
 Fecha: 12 de mayo del 2025.
 
-Descripción: En esta primera versión solo se creó la pantalla de fondo
+Descripción: En esta primera versión solo se creó la pantalla de fondo.
 """
 
 import pygame

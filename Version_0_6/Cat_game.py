@@ -59,18 +59,18 @@ def run_game() -> None:
         if game_over:
             result = Resultado_image(winner)
             start_time = pygame.time.get_ticks()
-            blink = True
+            b = True
 
             while pygame.time.get_ticks() - start_time < 4000:  # 4 segundos
                 background.blit(screen)
                 marks.draw(screen)
 
-                if blink:
+                if b:
                     result.blit(screen)
 
                 pygame.display.flip()
                 pygame.time.delay(500)  # Espera 500 ms entre parpadeos
-                blink = not blink  # Cambia visibilidad
+                b = not b  # Cambia visibilidad
 
 
 

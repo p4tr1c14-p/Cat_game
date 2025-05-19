@@ -45,7 +45,7 @@ def run_game() -> None:
     lista_o = []  #Jugadas del jugador O.
 
     audio = Audio()
-    audio.play_music(0.25)
+    audio.play_music(Configurations.get_volumen())
 
     while not game_over:
         game_over = game_event(marks, list_turn, turno, lista_imagen, lista_x, lista_o, audio)

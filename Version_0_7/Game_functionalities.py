@@ -12,7 +12,7 @@ import pygame
 from Configurations import Configurations
 from Media import Background, TurnoImage
 from TikTacToe import TicTacToeMark
-from Version_0_7.Media import Audio
+from Media import Audio
 
 
 def game_event(marks:pygame.surface, list_turn:list[int], turn: pygame.surface, lista_imagen:list[pygame.surface], list_x:list[int], list_o:list[int], audio: Audio) -> bool:
@@ -72,52 +72,46 @@ def check_winner(list_x, list_o) -> tuple[bool, int]:
     - True/False: si hay fin de juego.
     - 0 si gana X, 1 si gana O, 2 si es empate o sigue.
     """
-    x = False
-    y = False
+    x = game(list_x)
+    y = game(list_o)
 
-    #Comprobamos filas y columnas.
-    for i in range(3):
-        if (i + (i * 2) + 1) in list_x and (i + (i * 2) + 2) in list_x and (i + (i * 2) + 3) in list_x:
-            x = True
-            break
-        elif i + 1 in list_x and i + 4 in list_x and i + 7 in list_x:
-            x = True
-            break
-    if not x:
-        if 1 in list_x and 5 in list_x and 9 in list_x:
-            x = True
-        elif 3 in list_x and 5 in list_x and 7 in list_x:
-            x = True
-
-    for i in range(3):
-        if (i + (i * 2) + 1) in list_o and (i + (i * 2) + 2) in list_o and (i + (i * 2) + 3) in list_o:
-            y = True
-            break
-        elif i + 1 in list_o and i + 4 in list_o and i + 7 in list_o:
-            y = True
-            break
-    if not y:
-        if 1 in list_o and 5 in list_o and 9 in list_o:
-            y = True
-        elif 3 in list_o and 5 in list_o and 7 in list_o:
-            y = True
-
-    #Verificamos si todas las casillas fueron usadas.
+    # Verificamos si todas las casillas fueron usadas.
     if len(list_x) + len(list_o) == 9:
-        return True, 2 #Empate.
+        return True, 2  # Empate.
     elif x:
-        return True, 0 #Gana X.
+        return True, 0  # Gana X.
     elif y:
-        return True, 1 #Gana O.
+        return True, 1  # Gana O.
 
-    return False, 2 #El juego continúa.
+    return False, 2  # El juego continúa.
+
+
+def game(lista: list[int]) -> bool:
+    """
+    Función que revisa si las posiciones fueron ganadoras.
+    """
+
+    b = False
+    for i in range(3):
+        if (i + (i * 2) + 1) in lista and (i + (i * 2) + 2) in lista and (i + (i * 2) + 3) in lista:
+            b = True
+            break
+        elif i + 1 in lista and i + 4 in lista and i + 7 in lista:
+            b = True
+            break
+    if not b:
+        if 1 in lista and 5 in lista and 9 in lista:
+            b = True
+        elif 3 in lista and 5 in lista and 7 in lista:
+            b = True
+    return b
 
 def screen_game_over(screen: pygame.surface.Surface,
                    clock: pygame.time.Clock, background: Background, marks: pygame.surface, turn: pygame.surface,result:pygame.surface,credits:pygame.surface):
     bandera = True
     start_time = pygame.time.get_ticks()
 
-    while pygame.time.get_ticks() - start_time < 4000:  # Parpadeamos 4 segundos.
+    while pygame.time.get_ticks() - start_time < Configurations.get_tiempo():  # Parpadeamos 4 segundos.
         screen_refresh(screen, clock, background, marks, turn)  # Redibujamos fondo y marcas sin cambios.
 
         if bandera:
@@ -126,5 +120,5 @@ def screen_game_over(screen: pygame.surface.Surface,
         credits.blit(screen)  # Mostramos créditos.
 
         pygame.display.flip()
-        pygame.time.delay(400)  # Tiempo entre parpadeos.
+        pygame.time.delay(Configurations.get_parpadeo())  # Tiempo entre parpadeos.
         bandera = not bandera  # Alternamos mostrar/ocultar.

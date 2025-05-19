@@ -50,7 +50,7 @@ class TurnoImage(Sprite):
             self.image = pygame.image.load(Configurations.get_image_turno_o())
             TurnoImage.turno = "X" #Aquí nosotros cambiamos el turno a "X".
 
-        self.image = pygame.transform.scale(self.image, (600, 150))
+        self.image = pygame.transform.scale(self.image, (Configurations.get_size()))
         self.rect = self.image.get_rect()
         self.rect.centerx = Configurations.get_center_x() #Aquí nosotros centramos horizontalmente la imagen.
         self.rect.bottom = Configurations.get_bottom_x() #Aquí nosotros ajustamos la posición inferior.
@@ -70,7 +70,7 @@ class ResultadoImage:
         Dibuja la imagen del resultado en pantalla.
         """
         self.rect.centerx = screen.get_rect().centerx
-        self.rect.bottom = 400
+        self.rect.bottom = Configurations.get_bottom()
         screen.blit(self.image, self.rect)
 
 
@@ -81,7 +81,7 @@ class CreditsIma(Sprite):
 
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("../media/Creditos_Gato.png") #Aquí nosotros cargamos la imagen de créditos.
+        self.image = pygame.image.load(Configurations.get_img_creditos()) #Aquí nosotros cargamos la imagen de créditos.
         self.rect = self.image.get_rect()
 
     def blit(self, screen: pygame.surface.Surface) -> None:
@@ -89,7 +89,7 @@ class CreditsIma(Sprite):
         Dibuja la imagen de créditos en pantalla
         """
         self.rect.centerx = screen.get_rect().centerx
-        self.rect.bottom = 800
+        self.rect.bottom = Configurations.get_bottom()
         screen.blit(self.image, self.rect)
 
 

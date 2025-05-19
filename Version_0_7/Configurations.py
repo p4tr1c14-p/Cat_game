@@ -17,14 +17,21 @@ class Configurations:
     #Configuraciones de la pantalla.
     _screen_size = (1280, 720)  #Definimos el tamaño de la ventana del juego.
     _game_title = "Cat game en pygame"  #Título que aparece en la ventana del juego.
-    _background_image_path =  "../media/background_image.png"
+    _background_image_path =  "../Media/background_image.png"
     _fps = 8  #fps del juego
+    _volumen = 0.25
+    _parpadeo = 400
+    _tiempo = 4000
 
-    _mark_X = "../media/markX.png"
-    _mark_O = "../media/markO.png"
+    _bottom = 800
 
-    _image_turno_x = "../media/turnX.png"
-    _image_turno_o = "../media/turnO.png"
+    _size = (600,150)
+
+    _mark_X = "../Media/markX.png"
+    _mark_O = "../Media/markO.png"
+
+    _image_turno_x = "../Media/turnX.png"
+    _image_turno_o = "../Media/turnO.png"
 
     _size_block = (80,80)  #Tamaño de cada marca que se coloca en el tablero.
 
@@ -57,11 +64,12 @@ class Configurations:
     _center_x = 650  #Centramos la imagen horizontalmente.
     _bottom_x = 250  #Ajustamos las medidas de la parte inferior de la imagen.
 
-    _result_image = ["../media/winX.png","../media/winO.png","../media/draw.png"]  #Imágenes de resultados
+    _result_image = ["../Media/winX.png","../Media/winO.png","../Media/draw.png"]  #Imágenes de resultados
 
-    _music_path = "../media/music.mp3"
-    _keyboard_sound = "../media/keyboard_sound.mp3"
-    _results_sound = "../media/results_sound.mp3"
+    _music_path = "../Media/music.mp3"
+    _keyboard_sound = "../Media/keyboard_sound.mp3"
+    _results_sound = "../Media/results_sound.mp3"
+    _img_creditos = "../Media/Credits_Gato.png"
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
@@ -152,3 +160,33 @@ class Configurations:
     def get_results_sound(cls) -> str:
         """Devuelve la ruta del sonido de resultado."""
         return cls._results_sound
+
+    @classmethod
+    def get_volumen(cls) -> float:
+        """Devuelve la ruta del sonido de resultado."""
+        return cls._volumen
+
+    @classmethod
+    def get_parpadeo(cls) -> int:
+        """Devuelve la ruta del sonido de resultado."""
+        return cls._parpadeo
+
+    @classmethod
+    def get_tiempo(cls) -> int:
+        """Devuelve la ruta del sonido de resultado."""
+        return cls._tiempo
+
+    @classmethod
+    def get_bottom(cls) -> int:
+        """Devuelve la ruta del sonido de resultado."""
+        return cls._bottom
+
+    @classmethod
+    def get_img_creditos(cls) -> str:
+        """Devuelve la ruta del sonido de resultado."""
+        return cls._img_creditos
+
+    @classmethod
+    def get_size(cls) -> tuple[int,int]:
+        """Devuelve la ruta del sonido de resultado."""
+        return cls._size

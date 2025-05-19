@@ -11,7 +11,7 @@ Las configuraciones necesarias se integraron en la clase Configurations.
 import pygame
 
 from Configurations import Configurations
-from Game_functionalities import game_event, screen_refresh, check_winner
+from Game_functionalities import game_event, screen_refresh, check_winner,screen_game_over
 from Media import Background, TurnoImage, ResultadoImage, CreditsIma, Audio
 
 def run_game() -> None:
@@ -61,20 +61,8 @@ def run_game() -> None:
 
         if game_over:
             result = ResultadoImage(winner)  #Imagen del resultado.
-            bandera = True
-            start_time = pygame.time.get_ticks()
             audio.play_results_sound()  #Reproducimos sonido final.
-
-            while pygame.time.get_ticks() - start_time < 4000:  #Parpadeamos 4 segundos.
-                screen_refresh(screen, clock, background, marks, turno)  #Redibujamos fondo y marcas sin cambios.
-
-                if bandera:
-                    result.blit(screen)  #Mostramos imagen del resultado.
-
-                credits.blit(screen)  # Mostramos créditos.
-                pygame.display.flip()
-                pygame.time.delay(400)  #Tiempo entre parpadeos.
-                bandera = not bandera  #Alternamos mostrar/ocultar.
+            screen_game_over(screen, clock, background, marks, turno,result,credits)
 
 
 if __name__ == '__main__':

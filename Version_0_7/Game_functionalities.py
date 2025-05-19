@@ -111,3 +111,20 @@ def check_winner(list_x, list_o) -> tuple[bool, int]:
         return True, 1 #Gana O.
 
     return False, 2 #El juego continúa.
+
+def screen_game_over(screen: pygame.surface.Surface,
+                   clock: pygame.time.Clock, background: Background, marks: pygame.surface, turn: pygame.surface,result,credits):
+    bandera = True
+    start_time = pygame.time.get_ticks()
+
+    while pygame.time.get_ticks() - start_time < 4000:  # Parpadeamos 4 segundos.
+        screen_refresh(screen, clock, background, marks, turn)  # Redibujamos fondo y marcas sin cambios.
+
+        if bandera:
+            result.blit(screen)  # Mostramos imagen del resultado.
+
+        credits.blit(screen)  # Mostramos créditos.
+
+        pygame.display.flip()
+        pygame.time.delay(400)  # Tiempo entre parpadeos.
+        bandera = not bandera  # Alternamos mostrar/ocultar.

@@ -43,12 +43,12 @@ class TurnoImage(Sprite):
     def __init__(self):
         super().__init__()
 
-        if Turno_image.turno == "X":
+        if TurnoImage.turno == "X":
             self.image = pygame.image.load(Configurations.get_image_turno_x())
-            Turno_image.turno = "O" #Aquí nosotros cambiamos el turno a "O".
+            TurnoImage.turno = "O" #Aquí nosotros cambiamos el turno a "O".
         else:
             self.image = pygame.image.load(Configurations.get_image_turno_o())
-            Turno_image.turno = "X" #Aquí nosotros cambiamos el turno a "X".
+            TurnoImage.turno = "X" #Aquí nosotros cambiamos el turno a "X".
 
         self.image = pygame.transform.scale(self.image, (600, 150))
         self.rect = self.image.get_rect()

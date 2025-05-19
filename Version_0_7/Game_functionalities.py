@@ -10,7 +10,7 @@ Las configuraciones necesarias se integraron en la clase Configurations.
 
 import pygame
 from Configurations import Configurations
-from Media import Background, Turno_image
+from Media import Background, TurnoImage
 from TikTacToe import TicTacToeMark
 from Version_0_7.Media import Audio
 
@@ -37,7 +37,7 @@ def game_event(marks:pygame.surface, list_turn:list[int], turn: pygame.surface, 
 
                 turn.remove(lista_imagen[len(list_turn)-1])  #Quitamos la imagen del turno anterior.
 
-                nueva_image = Turno_image()  #Generamos la imagen del nuevo turno.
+                nueva_image = TurnoImage()  #Generamos la imagen del nuevo turno.
                 turn.add(nueva_image)  #La añadimos al grupo actual.
                 lista_imagen.append(nueva_image)  #La guardamos en la lista de turnos.
 

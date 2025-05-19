@@ -12,7 +12,7 @@ import pygame
 
 from Configurations import Configurations
 from Game_functionalities import game_event, screen_refresh, check_winner
-from Media import Background, Turno_image, Resultado_image, CreditsIma, Audio
+from Media import Background, TurnoImage, ResultadoImage, CreditsIma, Audio
 
 def run_game() -> None:
     """
@@ -35,7 +35,7 @@ def run_game() -> None:
 
     turno = pygame.sprite.Group()  #Grupo de sprites para imagen del turno.
 
-    nueva_image = Turno_image()  #Imagen inicial del turno.
+    nueva_image = TurnoImage()  #Imagen inicial del turno.
     turno.add(nueva_image)  #Agregamos imagen al grupo turno.
 
     lista_imagen = [nueva_image]  #Lista para controlar la imagen del turno.
@@ -60,7 +60,7 @@ def run_game() -> None:
         game_over, winner = check_winner(lista_x, lista_o)  #Revisamos ganador y lo guardamos.
 
         if game_over:
-            result = Resultado_image(winner)  #Imagen del resultado.
+            result = ResultadoImage(winner)  #Imagen del resultado.
             bandera = True
             start_time = pygame.time.get_ticks()
             audio.play_results_sound()  #Reproducimos sonido final.

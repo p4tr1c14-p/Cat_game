@@ -40,7 +40,7 @@ def run_game() -> None:
 
     lista_imagen = [nueva_image]  #Lista para controlar la imagen del turno.
 
-    creditos = CreditsIma()  #Imagen de créditos.
+    credits = CreditsIma()  #Imagen de créditos.
     lista_x = []  #Jugadas del jugador X.
     lista_o = []  #Jugadas del jugador O.
 
@@ -71,7 +71,7 @@ def run_game() -> None:
                 if bandera:
                     result.blit(screen)  #Mostramos imagen del resultado.
 
-                creditos.blit(screen)  # Mostramos créditos.
+                credits.blit(screen)  # Mostramos créditos.
                 pygame.display.flip()
                 pygame.time.delay(400)  #Tiempo entre parpadeos.
                 bandera = not bandera  #Alternamos mostrar/ocultar.

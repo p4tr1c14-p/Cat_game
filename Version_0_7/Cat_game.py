@@ -50,7 +50,7 @@ def run_game() -> None:
     while not game_over:
         game_over = game_event(marks, list_turn, turno, lista_imagen, lista_x, lista_o, audio)
 
-        screen_refresh(screen, clock, background, marks, turno)
+        screen_refresh(screen, clock, background, marks, turno,credits)
 
         check_winner(lista_x, lista_o)  #Verificamos si hay un ganador en esta ronda.
 

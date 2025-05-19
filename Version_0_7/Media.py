@@ -70,7 +70,7 @@ class ResultadoImage:
         Dibuja la imagen del resultado en pantalla.
         """
         self.rect.centerx = screen.get_rect().centerx
-        self.rect.bottom = Configurations.get_bottom()
+        self.rect.bottom = Configurations.get_bottom_2()
         screen.blit(self.image, self.rect)
 
 

@@ -54,7 +54,7 @@ def game_event(marks:pygame.surface, list_turn:list[int], turn: pygame.surface, 
 
 
 def screen_refresh(screen: pygame.surface.Surface,
-                   clock: pygame.time.Clock, background: Background, marks: pygame.surface, turn: pygame.surface) -> None:
+                   clock: pygame.time.Clock, background: Background, marks: pygame.surface, turn: pygame.surface,credits) -> None:
     """
     Dibuja y actualiza todos los elementos visuales del juego en la pantalla.
     """
@@ -62,7 +62,9 @@ def screen_refresh(screen: pygame.surface.Surface,
     marks.draw(screen)
     turn.draw(screen)
     pygame.display.flip()
+    credits.blit(screen)
     clock.tick(Configurations.get_fps())
+
 
 
 def check_winner(list_x, list_o) -> tuple[bool, int]:
@@ -112,12 +114,10 @@ def screen_game_over(screen: pygame.surface.Surface,
     start_time = pygame.time.get_ticks()
 
     while pygame.time.get_ticks() - start_time < Configurations.get_tiempo():  # Parpadeamos 4 segundos.
-        screen_refresh(screen, clock, background, marks, turn)  # Redibujamos fondo y marcas sin cambios.
+        screen_refresh(screen, clock, background, marks, turn,credits)  # Redibujamos fondo y marcas sin cambios.
 
         if bandera:
-            result.blit(screen)  # Mostramos imagen del resultado.
-
-        credits.blit(screen)  # Mostramos créditos.
+            result.blit(screen) # Mostramos imagen del resultado.
 
         pygame.display.flip()
         pygame.time.delay(Configurations.get_parpadeo())  # Tiempo entre parpadeos.

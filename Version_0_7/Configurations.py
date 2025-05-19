@@ -24,6 +24,7 @@ class Configurations:
     _tiempo = 4000
 
     _bottom = 800
+    _bottom_2 = 300
 
     _size = (600,150)
 
@@ -180,6 +181,12 @@ class Configurations:
     def get_bottom(cls) -> int:
         """Devuelve la ruta del sonido de resultado."""
         return cls._bottom
+
+    @classmethod
+    def get_bottom_2(cls) -> int:
+        """Devuelve la ruta del sonido de resultado."""
+        return cls._bottom_2
+
 
     @classmethod
     def get_img_creditos(cls) -> str:

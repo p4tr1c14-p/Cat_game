@@ -33,7 +33,7 @@ class Background:
         screen.blit(self.image, self.rect) #Aquí nosotros dibujamos la imagen de fondo sobre la pantalla.
 
 
-class Turno_image(Sprite):
+class TurnoImage(Sprite):
     """
     Clase que maneja la imagen que indica de quién es el turno
     """
@@ -56,7 +56,7 @@ class Turno_image(Sprite):
         self.rect.bottom = Configurations.get_bottom_x() #Aquí nosotros ajustamos la posición inferior.
 
 
-class Resultado_image:
+class ResultadoImage:
     """
     Clase que muestra la imagen del resultado del juego.
     """

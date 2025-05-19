@@ -113,7 +113,7 @@ def check_winner(list_x, list_o) -> tuple[bool, int]:
     return False, 2 #El juego continúa.
 
 def screen_game_over(screen: pygame.surface.Surface,
-                   clock: pygame.time.Clock, background: Background, marks: pygame.surface, turn: pygame.surface,result,credits):
+                   clock: pygame.time.Clock, background: Background, marks: pygame.surface, turn: pygame.surface,result:pygame.surface,credits:pygame.surface):
     bandera = True
     start_time = pygame.time.get_ticks()
 

@@ -69,7 +69,7 @@ class Configurations:
     _music_path = "../Media/music.mp3"
     _keyboard_sound = "../Media/keyboard_sound.mp3"
     _results_sound = "../Media/results_sound.mp3"
-    _img_creditos = "../Media/Credits_Gato.png"
+    _img_creditos = "../Media/Creditos_Gato.png"
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
